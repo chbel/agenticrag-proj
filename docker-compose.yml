@@ -1,0 +1,32 @@
+version: '3.8'
+
+services:
+  # Base de données principale + vecteurs
+  postgres:
+    image: pgvector/pgvector:pg16
+    environment:
+      POSTGRES_DB: knowledgehub
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: admin123
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  # Cache + Queue jobs
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
+
+  # Vector DB pour recherche sémantique
+  qdrant:
+    image: qdrant/qdrant
+    ports:
+      - "6333:6333"
+    volumes:
+      - qdrant_data:/qdrant/storage
+
+volumes:
+  postgres_data:
+  qdrant_data:

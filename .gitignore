@@ -1,0 +1,17 @@
+# Clés API — ne jamais pusher !
+.env
+
+# Cache Python
+__pycache__/
+*.pyc
+*.pyo
+
+# Cache HuggingFace (très lourd ~1GB)
+.cache/
+
+# PDFs personnels
+AgenticRag/docs/
+
+# Visual Studio
+.vs/
+*.user
